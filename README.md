@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-yarn add create-inferno-context
+npm i create-inferno-context --save
 ```
 
 You'll need to also have `inferno` and `prop-types` installed.
