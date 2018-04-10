@@ -9,8 +9,7 @@
         }
       }
     ],
-    "react",
-    "flow"
+    "inferno"
   ],
-  "plugins": ["transform-class-properties", "add-module-exports"]
+  "plugins": ["transform-class-properties", ["inferno", { imports: true }], "syntax-jsx", "add-module-exports"]
 }
