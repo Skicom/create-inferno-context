@@ -1,4 +1,3 @@
-//@flow
 import { Component, render } from 'inferno';
 import createInfernoContext from './lib/';
 
@@ -78,9 +77,5 @@ function App() {
 }
 
 let container = document.getElementById('container');
-
-if (!container) {
-  throw new Error('missing #container');
-}
 
 render(<App />, container);
