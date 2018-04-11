@@ -90,7 +90,6 @@ function createInfernoContext(defaultValue, calculateChangedBits) {
     }
 
     render() {
-      console.log('this.props.children', this.props.children);
       return this.props.children;
     }
   }
