@@ -19,7 +19,88 @@ const Context = createInfernoContext(defaultValue);
 // <Context.Consumer>{value => children}</Context.Consumer>
 ```
 
-## Example
+## Examples
+
+```js
+import { Component, render } from 'inferno';
+import createInfernoContext from 'create-inferno-context';
+
+const MyContext = createInfernoContext();
+
+class MyProvider extends Component {
+  state = {
+    name: 'Bob',
+    age: 44,
+    cool: true
+  }
+
+  handleGrowAYearOlder = () => { 
+  	this.setState({
+    	age: this.state.age + 1
+  	})
+  }
+
+  render() {
+    return (
+      <MyContext.Provider value={{
+        state: this.state,
+        growAYearOlder: this.handleGrowAYearOlder
+      }}>
+        {this.props.children}
+      </MyContext.Provider>
+    )
+  }
+}
+
+const Family = (props) => (
+  <div className="family">
+    <Person />
+  </div>
+)
+
+class Person extends Component {
+  render() {
+    return (
+      <div className="person">
+        <MyContext.Consumer>
+          {(context) => (
+            <div>
+              <p>Age: {context.state.age}</p>
+              <p>Name: {context.state.name}</p>
+              <button onClick={context.growAYearOlder}>
+              	<span aria-label="cakes" role="img">🍰🍥🎂</span>
+              </button>
+            </div>
+          )}
+        </MyContext.Consumer>
+      </div>
+    )
+  }
+}
+
+
+class App extends Component {
+  render() {
+    return (
+      <MyProvider>
+        <div>
+          <p>I am the app</p>
+          <Family />
+        </div>
+      </MyProvider>
+    );
+  }
+}
+
+let container = document.getElementById('container');
+
+if (!container) {
+  throw new Error('missing #container');
+}
+
+render(<App />, container);
+
+```
 
 ```js
 import { Component, render } from 'inferno';
