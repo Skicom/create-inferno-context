@@ -1,5 +1,5 @@
 // @flow
-import { Component, type Node } from 'react';
+import { Component, type Node } from 'inferno';
 
 type RenderFn<T> = (value: T) => Node;
 
@@ -25,7 +25,7 @@ export type Context<T> = {
   Consumer: Class<Consumer<T>>
 };
 
-declare export default function createReactContext<T>(
+declare export default function createInfernoContext<T>(
   defaultValue: T,
   calculateChangedBits?: (prev: T, next: T) => number
 ): Context<T>;

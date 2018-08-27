@@ -1,7 +1,7 @@
 {
   "name": "theme-example",
   "version": "1.0.0",
-  "description": "Example for create-react-context",
+  "description": "Example for create-inferno-context",
   "main": "index.js",
   "scripts": {
     "build": "webpack"
@@ -10,9 +10,10 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "inferno": "^5.4.2",
     "webpack": "^3.10.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-plugin-inferno": "^5.1.0"
+  }
 }

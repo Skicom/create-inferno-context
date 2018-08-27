@@ -1,8 +1,8 @@
 import { Component, render } from 'inferno';
-import createInfernoContext from './lib/';
+import createInfernoContext from '../../lib/implementation';
 
 // Pass a default theme to ensure type correctness
-const ThemeContext = createInfernoContext('light');
+const { Provider, Consumer } = createInfernoContext('light');
 
 class ThemeToggler extends Component {
   state = { theme: 'light' };
@@ -10,7 +10,7 @@ class ThemeToggler extends Component {
     return (
       // Pass the current context value to the Provider's `value` prop.
       // Changes are detected using strict comparison (Object.is)
-      <ThemeContext.Provider value={this.state.theme}>
+      <Provider value={this.state.theme}>
         <div>
         <button
           onClick={() => {
@@ -23,7 +23,7 @@ class ThemeToggler extends Component {
         </button>
         {this.props.children}
         </div>
-      </ThemeContext.Provider>
+      </Provider>
     );
   }
 }
@@ -33,13 +33,13 @@ class Title extends Component {
     return (
       // The Consumer uses a render prop API. Avoids conflicts in the
       // props namespace.
-      <ThemeContext.Consumer>
+      <Consumer>
         {theme => (
           <h1 style={{ color: theme === 'light' ? '#000' : '#fff' }}>
             {this.props.children}
           </h1>
         )}
-      </ThemeContext.Consumer>
+      </Consumer>
     );
   }
 }
@@ -47,7 +47,7 @@ class Title extends Component {
 class Emoji extends Component {
   render() {
     return (
-      <ThemeContext.Consumer>
+      <Consumer>
         {theme => (
           <div
             style={{
@@ -60,7 +60,7 @@ class Emoji extends Component {
             {theme === 'light' ? '⚡️' : '🕶'}
           </div>
         )}
-      </ThemeContext.Consumer>
+      </Consumer>
     );
   }
 }
