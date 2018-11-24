@@ -2,7 +2,6 @@
 import { Component } from 'inferno';
 import PropTypes from 'prop-types';
 import gud from 'gud';
-import warning from 'fbjs/lib/warning';
 
 const MAX_SIGNED_31_BIT_INT = 1073741823;
 
@@ -71,14 +70,6 @@ function createInfernoContext(defaultValue, calculateChangedBits) {
             typeof calculateChangedBits === 'function'
               ? calculateChangedBits(oldValue, newValue)
               : MAX_SIGNED_31_BIT_INT;
-          if (process.env.NODE_ENV !== 'production') {
-            warning(
-              (changedBits & MAX_SIGNED_31_BIT_INT) === changedBits,
-              'calculateChangedBits: Expected the return value to be a ' +
-                '31-bit integer. Instead received: %s',
-              changedBits
-            );
-          }
 
           changedBits |= 0;
 
