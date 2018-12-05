@@ -9,7 +9,7 @@ const MAX_SIGNED_31_BIT_INT = 1073741823;
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
 function objectIs(x, y) {
   if (x === y) {
-    return x !== 0 || 1 / x === 1 / (y: any);
+    return x !== 0 || 1 / x === 1 / y;
   } else {
     return x !== x && y !== y;
   }
@@ -61,7 +61,7 @@ function createInfernoContext(defaultValue, calculateChangedBits) {
       if (this.props.value !== nextProps.value) {
         let oldValue = this.props.value;
         let newValue = nextProps.value;
-        let changedBits: number;
+        let changedBits;
 
         if (objectIs(oldValue, newValue)) {
           changedBits = 0; // No change
@@ -90,7 +90,7 @@ function createInfernoContext(defaultValue, calculateChangedBits) {
       [contextProp]: PropTypes.object
     };
 
-    observedBits: number;
+    observedBits;
 
     state = {
       value: this.getValue()
@@ -129,8 +129,8 @@ function createInfernoContext(defaultValue, calculateChangedBits) {
       }
     }
 
-    onUpdate = (newValue, changedBits: number) => {
-      const observedBits: number = this.observedBits | 0;
+    onUpdate = (newValue, changedBits) => {
+      const observedBits = this.observedBits | 0;
       if ((observedBits & changedBits) !== 0) {
         this.setState({ value: this.getValue() });
       }

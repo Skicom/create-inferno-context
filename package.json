@@ -1,9 +1,9 @@
 {
   "name": "create-inferno-context",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Polyfill for the proposed Inferno context API",
   "main": "dist/node/index.js",
-	"browser": "dist/browser/index.js",
+  "module": "dist/module/index.js",
   "repository": "https://github.com/kurdin/create-inferno-context",
   "author": "Ski.com",
   "license": "MIT",
@@ -18,11 +18,9 @@
     "lib"
   ],
   "scripts": {
-    "buildnode": "parcel build src/index.js -d dist/node --target node --no-cache",
-		"buildbrowser": "parcel build src/index.js -d dist/browser --no-cache",
-		"build": "npm run buildnode && npm run buildbrowser",
-		"push": "npm publish --registry http://10.0.0.105:4873/",
-		"all": "npm run build && npm run push",
+    "push": "npm publish --registry http://10.0.0.105:4873/",
+    "all": "npm run build && npm run push",
+    "build": "rm -rf dist/ && rollup -c",
     "test": "jest"
   },
   "dependencies": {
@@ -30,15 +28,20 @@
     "prop-types": "^15.6.2",
     "inferno": "^6.2.1"
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
+    "@babel/preset-typescript": "^7.1.0",
     "babel-core": "^6.26.3",
     "babel-plugin-inferno": "^6.0.3",
-    "babel-preset-flow": "^6.23.0"
+    "babel-preset-flow": "^6.23.0",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^3.0.0"
   },
   "lint-staged": {
     "*.{js,md,json,js.flow,d.ts}": [
